@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS 2 Simple Shopping cart</title>
+
+
+    <link rel='stylesheet prefetch' href='css/bootstrap.min.css'>
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+
+<div id="app" class="container">
+    <div class="text-right">
+        <img style="float: left;" src="./img/Feeders_preview_rev_1.png" alt="Feeders logo" width="150px">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#cartModal">Cart ({{cartItems.length}})
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Cart</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- This is an inline component. It works as intended for all items in cartItems array -->
+                    <shopping-cart inline-template :items="cartItems">
+                        <div>
+                            <table class="table table-cart">
+                                <tr v-for="(item, index) in items">
+                                    <td id="itemtitle"> <img :src="item.image" :alt="item.image" width="35"> {{item.title}}</td>
+                                    <!-- <td style="width:120px">QTY:
+                                        <input v-model="item.qty" title="qty" class="form-control input-qty" type="number">
+                                    </td> -->
+                                    <!-- <td class="text-right">${{item.price | formatCurrency}}</td> -->
+                                    <td>
+                                        <button @click="removeItem(index)"><span> Remove </span></button>
+                                    </td>
+                                </tr>
+                                <tr v-show="items.length === 0">
+                                    <td colspan="4" class="text-center">Cart is empty</td>
+                                </tr>
+                                <tr v-show="items.length > 0">
+                                    <td></td>
+                                    <td class="text-right">Cart Total</td>
+                                    <!-- <td class="text-right">${{Total | formatCurrency}}</td> -->
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.container -->
+                    </shopping-cart>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Order</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="items" class="container">
+        <div class="row">
+            <div class="col-xs-3 text-center" v-for="(item, index) in items">
+                  <div class="item">
+                     <img :src="item.image" v-bind:alt=item.image title="Add to cart image" class="img-responsive">
+                     <h4>{{item.title}}</h4>
+                     <!-- <p>${{item.price | formatCurrency}}</p> -->
+                     <!-- <input v-bind:title=item.title value="1" placeholder=none id="qty" type="number" class="form-control"> -->
+                     <button id="btn" class="btn btn-primary" @click="addToCart(item, index)">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js' integrity='sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==' crossorigin='anonymous'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+<script src='js/jquery.3.1.1.min.js'></script>
+<script src='js/bootstrap.3.3.7.min.js'></script>
+<script src="js/app.js"></script>
+</body>
+</html>

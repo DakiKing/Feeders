@@ -1,0 +1,34 @@
+.container{
+  padding:20px;
+  max-width:750px;
+}
+
+#items{
+  margin-top: 10%;
+}
+
+#btn{
+  margin-top: 15%;
+}
+
+.input-qty {
+  width: 60px;
+  float: right
+}
+
+#qty{
+  text-align: left;
+  margin-bottom: 10%;
+}
+
+.table-cart > tr > td {
+  vertical-align: middle !important;
+}
+
+table button{
+  float: right;
+}
+
+table td{
+  font-size: large;
+}
